@@ -182,6 +182,23 @@
     color: var(--sun); font-family: 'Orbitron', monospace; font-size: 14px;
     padding: 7px 10px; outline: none; width: 110px; text-align: right;
     transition: border .2s;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  /* Select específico: ícone de seta customizado */
+  select.comm-input {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23ff8c00'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 28px;
+    text-align: left;
+    cursor: pointer;
+  }
+  select.comm-input:hover { border-color: var(--amber); background-color: var(--surface2); }
+  select.comm-input option {
+    background: var(--surface2);
+    color: var(--sun);
   }
   .comm-input:focus { border-color: var(--sun); }
   .comm-pct { font-size: 11px; color: var(--dim); }
@@ -256,12 +273,212 @@
   }
   #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-  @media (max-width: 700px) {
-    .kit-grid { grid-template-columns: 1fr; }
+  /* ══════════════════════════════════════════════
+     MOBILE RESPONSIVE — max-width: 600px
+  ══════════════════════════════════════════════ */
+  @media (max-width: 600px) {
+
+    /* ── HEADER ── */
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 14px 16px;
+    }
+    .logo-wrap img {
+      height: 44px !important;
+      width: auto !important;
+      max-width: 100%;
+      margin-left: 0 !important;
+    }
+    .logo-sub { font-size: 9px; letter-spacing: 1.5px; }
+    .header-tag { font-size: 10px; text-align: left; }
+
+    /* ── NAV ── */
+    nav {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    nav button {
+      font-size: 10px;
+      padding: 12px 10px;
+      letter-spacing: 0;
+      white-space: nowrap;
+      min-width: 80px;
+      flex: none;
+    }
+
+    /* ── PAGES ── */
+    .page {
+      padding: 18px 14px 80px;
+    }
+    #page-banner {
+      padding: 16px 14px 80px !important;
+    }
+
+    /* ── SECTION TITLES ── */
+    .sec-title {
+      font-size: 16px;
+      letter-spacing: 1.5px;
+    }
+    .sec-sub {
+      font-size: 10px;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    /* ── KIT GRID: 1 coluna ── */
+    .kit-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .kit-card { padding: 16px 14px; border-radius: 12px; }
+    .kit-kwh { font-size: 22px; }
+    .kit-kwh span { font-size: 12px; }
+    .kit-desc { font-size: 10px; margin: 4px 0 10px; }
+
+    /* ── COMPONENTS TABLE: scroll horizontal ── */
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .comp-table { font-size: 11px; min-width: 480px; }
+    .comp-table th { font-size: 9px; padding: 6px 8px; }
+    .comp-table td { padding: 7px 8px; }
+    .comp-table td.price,
+    .comp-table td.total { font-size: 10px; }
+
+    /* ── KIT TOTAL BAR ── */
+    .kit-total-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 14px 16px;
+    }
+    .kt-value { font-size: 22px; }
+    .kt-label { font-size: 11px; }
+
+    /* ── PLATAFORMAS: 1 coluna ── */
+    .plat-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .plat-card { padding: 14px; }
+    .plat-name { font-size: 12px; }
+    .plat-price { font-size: 12px; }
+    .plat-row { font-size: 11px; }
+
+    /* ── COMISSÃO: 1 coluna ── */
+    .comm-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .comm-panel { padding: 16px; }
+    .comm-panel-title { font-size: 11px; margin-bottom: 12px; }
+    .comm-row { flex-direction: column; align-items: flex-start; gap: 6px; margin-bottom: 10px; }
+    .comm-row label { white-space: normal; font-size: 10px; }
+    .comm-input { width: 100%; text-align: left; font-size: 13px; }
+
+    /* ── COMM RESULT ── */
+    .comm-result {
+      flex-direction: column;
+      gap: 16px;
+      padding: 16px;
+    }
+    .cr-sep { width: 100%; height: 1px; }
+    .cr-block { min-width: unset; }
+    .cr-val { font-size: 18px; }
+    .cr-val.big { font-size: 24px; }
+    .cr-label { font-size: 10px; }
+
+    /* ── CARGA RÁPIDA (comissão) ── */
+    #page-comissao > div:first-of-type {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 14px;
+    }
+    #comm-kit { width: 100% !important; }
+
+    /* ── BUTTONS ── */
+    .btn { padding: 10px 16px; font-size: 11px; width: 100%; justify-content: center; }
+    .btn-row { flex-direction: column; gap: 8px; }
+
+    /* ── BANNER PAGE ── */
+    #banner-preview {
+      padding: 22px 18px 20px !important;
+      min-height: unset !important;
+    }
+    #b-title-el { font-size: 24px !important; margin-bottom: 16px !important; }
+    #b-tag-el { font-size: 11px !important; }
+    #b-desc-el { font-size: 12px !important; margin-bottom: 18px !important; }
+    #b-contact-el { font-size: 12px !important; }
+    .b-cta { font-size: 11px !important; padding: 8px 14px !important; }
+    .b-kit-badge { font-size: 13px !important; padding: 5px 12px !important; }
+
+    /* banner footer: stack vertically */
+    #banner-preview > div:last-child > div:last-child {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    /* ── FILTROS CHIPS ── */
+    .chip { font-size: 10px; padding: 3px 10px; }
+
+    /* ── NOTICE ── */
+    .notice { font-size: 10px; padding: 8px 10px; }
+
+    /* ── STATUS BAR ── */
+    .status-bar {
+      padding: 8px 16px;
+    }
+    .status-text { font-size: 10px; }
+    .status-kit { font-size: 10px; }
+
+    /* ── TOAST ── */
+    #toast { font-size: 11px; padding: 7px 18px; bottom: 50px; }
+
+    /* ── SUMMARY TABLE: scroll horizontal ── */
+    #summary-tbody ~ * ,
+    .table-wrap table { min-width: 420px; }
+
+    /* ── MISC INLINE STYLES OVERRIDE ── */
+    .sec-title[style*="font-size:15px"] { font-size: 13px !important; }
+
+    /* banner kit checkboxes row */
+    #banner-preview label { gap: 4px; }
+
+    /* ── CARGA RÁPIDA: botões full width ── */
+    #page-comissao .btn { white-space: normal; text-align: center; }
+  }
+
+  /* ══════════════════════════════════════════════
+     TABLET — 601px a 780px (ajuste intermediário)
+  ══════════════════════════════════════════════ */
+  @media (min-width: 601px) and (max-width: 780px) {
+    header { padding: 14px 20px; }
+    .logo-wrap img { height: 52px !important; width: auto !important; }
+    .page { padding: 22px 20px 60px; }
+    #page-banner { padding: 20px 20px 60px !important; }
+
+    .kit-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .plat-grid { grid-template-columns: 1fr; }
     .comm-grid { grid-template-columns: 1fr; }
     .banner-controls { grid-template-columns: 1fr; }
-    header { flex-direction: column; gap: 8px; text-align: center; }
+
+    .kit-total-bar { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .kt-value { font-size: 24px; }
+
+    .comm-result { flex-direction: column; gap: 16px; }
+    .cr-sep { width: 100%; height: 1px; }
+
+    nav button { font-size: 11px; padding: 12px 6px; }
+    .sec-title { font-size: 18px; }
+    #b-title-el { font-size: 28px !important; }
   }
 </style>
 </head>
@@ -381,11 +598,9 @@
   <!-- ══════════════════ PAGE: BANNER ══════════════════ -->
   <div id="page-banner" class="page" style="padding: 20px 32px 60px;">
 
-    <!-- Inputs hidden -->
     <input type="hidden" id="b-wanum" value="84999829569">
     <input type="hidden" id="b-wamsg" value="Olá! Vim pelo site e gostaria de solicitar um orçamento de kit solar.">
 
-    <!-- BANNER GRANDE -->
     <div id="banner-preview" style="
       border-radius: 18px; border: 1px solid var(--amber);
       background: linear-gradient(135deg, #04080f 0%, #0c0a00 50%, #04080f 100%);
@@ -400,7 +615,6 @@
 
       <div style="position:relative;z-index:1;">
 
-        <!-- Empresa -->
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
           <span style="color:var(--sun);font-size:16px;">☀</span>
           <span id="b-tag-el" contenteditable="true" oninput="syncFromBanner()"
@@ -410,14 +624,12 @@
           <span style="font-size:10px;color:var(--dim);margin-left:4px;opacity:0.6;">✎</span>
         </div>
 
-        <!-- Slogan -->
         <div id="b-title-el" contenteditable="true" oninput="syncFromBanner()"
           style="font-family:'Orbitron',monospace;font-size:38px;font-weight:900;color:var(--sun);
                  text-shadow:0 0 20px var(--amber);line-height:1.15;margin-bottom:24px;
                  outline:none;border-bottom:1px dashed rgba(255,184,0,0.25);cursor:text;min-width:100px;"
           title="Clique para editar slogan">Energia limpa,<br>economia garantida</div>
 
-        <!-- Kits com checkbox inline -->
         <div style="display:flex;align-items:center;gap:14px;margin-bottom:22px;flex-wrap:wrap;">
           <label style="display:flex;align-items:center;gap:6px;cursor:pointer;">
             <input type="checkbox" id="bk-400" checked style="accent-color:var(--sun);width:14px;height:14px;" onchange="syncKits()">
@@ -434,14 +646,12 @@
           <span style="font-size:10px;color:var(--dim);opacity:0.6;margin-left:4px;">marque/desmarque os kits</span>
         </div>
 
-        <!-- Diferenciais -->
         <div id="b-desc-el" contenteditable="true" oninput="syncFromBanner()"
           style="font-size:14px;color:var(--text);line-height:1.8;margin-bottom:30px;
                  outline:none;border-bottom:1px dashed rgba(255,184,0,0.2);cursor:text;min-width:80px;"
           title="Clique para editar diferenciais">Financiamento disponível · Instalação profissional inclusa<br>Garantia de 25 anos nos painéis · Homologação na distribuidora</div>
       </div>
 
-      <!-- Rodapé -->
       <div style="position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;
                   flex-wrap:wrap;gap:12px;border-top:1px solid rgba(255,184,0,0.15);padding-top:20px;">
         <div style="display:flex;align-items:center;gap:8px;">
@@ -469,7 +679,6 @@
     <div class="sec-title">CALCULADORA DE COMISSÕES</div>
     <div class="sec-sub">CUSTO DO KIT + COMISSÃO DO VENDEDOR + PREÇO FINAL AO CLIENTE</div>
 
-    <!-- CARGA RÁPIDA -->
     <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:20px;
                 background:var(--surface); border:1px solid var(--sun); border-radius:12px; padding:16px 20px;">
       <span style="font-size:11px;color:var(--amber);letter-spacing:1px;white-space:nowrap;">KIT SELECIONADO</span>
@@ -548,7 +757,6 @@
 <div class="status-bar">
   <div class="status-dot"></div>
   <div class="status-text" id="status-text">SISTEMA ONLINE</div>
-
 </div>
 
 <div id="toast">✓ COPIADO!</div>
@@ -610,7 +818,6 @@ const PLATAFORMAS = [
     url: "meugerador.com.br",
     link: "https://www.meugerador.com.br/collections/kits-solar-ongrid",
     cor: "#ffb800",
-    // Inversor Sungrow — preços à vista PIX (sem desconto de 15%)
     precos: { 400: 7288, 600: 8543, 800: 10111 }
   },
   {
@@ -618,7 +825,6 @@ const PLATAFORMAS = [
     url: "portalsolar.com.br/loja",
     link: "https://www.portalsolar.com.br/loja/categoria/geradores-de-energia-solar/por-potencia/3,1kwp-ate-5kwp",
     cor: "#00ffe5",
-    // Kits Sungrow/WEG telha cerâmica — menor preço disponível por faixa
     precos: { 400: 7900, 600: 9800, 800: 12500 }
   },
   {
@@ -626,7 +832,6 @@ const PLATAFORMAS = [
     url: "solardospomares.com.br",
     link: "https://solardospomares.com.br/kit-energia-solar-residencial-preco/",
     cor: "#00ff88",
-    // Kits Deye/APsystems — faixa de entrada disponível em março 2026
     precos: { 400: 7500, 600: 9200, 800: 11050 }
   },
   {
@@ -641,7 +846,6 @@ const PLATAFORMAS = [
     link: "https://lista.mercadolivre.com.br/kit-solar-400-kwh",
     url: "mercadolivre.com.br/kit-solar",
     cor: "#ff9900",
-    // Faixa de menor preço disponível por faixa de kWh (março 2026)
     precos: { 400: 6900, 600: 8800, 800: 10500 }
   },
   {
@@ -649,7 +853,6 @@ const PLATAFORMAS = [
     url: "aeliussolar.com.br",
     link: "https://www.aeliussolar.com.br/kit-energia-solar-on-grid-ate-400kwh",
     cor: "#ff0077",
-    // Distribuidor RJ — kits Growatt/Sungrow com estrutura inclusa
     precos: { 400: 7650, 600: 9500, 800: 12200 }
   },
 ];
@@ -684,7 +887,6 @@ function selectKit(kwh) {
   document.querySelectorAll('.kit-card').forEach(c => c.classList.remove('selected'));
   document.getElementById('card-' + kwh).classList.add('selected');
   renderComponents();
-  
 }
 
 function renderComponents() {
@@ -707,7 +909,6 @@ function renderComponents() {
     `;
     tbody.appendChild(tr);
   });
-  // Subtotal row
   const tr2 = document.createElement('tr');
   tr2.innerHTML = `
     <td colspan="3" style="text-align:right;color:var(--amber);font-size:11px;padding-top:14px;letter-spacing:1px;">SUBTOTAL EQUIPAMENTOS</td>
@@ -729,7 +930,6 @@ function renderPlatforms() {
   const grid = document.getElementById('plat-grid');
   grid.innerHTML = '';
 
-  // Find best price per kit
   const kits = [400, 600, 800];
   const best = {};
   kits.forEach(k => {
@@ -766,7 +966,6 @@ function renderPlatforms() {
     grid.appendChild(card);
   });
 
-  // Summary
   const tbody = document.getElementById('summary-tbody');
   tbody.innerHTML = '';
   kits.forEach(k => {
@@ -842,7 +1041,6 @@ function syncFromBanner() {
 
 function generateBanner() {
   updateWaPreview();
-  
 }
 
 function copyBanner() {
@@ -861,7 +1059,6 @@ function loadKitCost() {
   const cost = kitTotal(parseInt(kit));
   document.getElementById('comm-custo').value = cost;
   calcComm();
-  
 }
 
 function calcComm() {
@@ -903,9 +1100,6 @@ PRECO FINAL AO CLIENTE: ${final}`;
 /* ─── HELPERS ─── */
 function fmt(n) {
   return n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
-function setStatus(msg, active) {
-  // status bar mostra apenas SISTEMA ONLINE
 }
 function showToast() {
   const t = document.getElementById('toast');
@@ -968,14 +1162,12 @@ function showToast() {
     etrails.push({x,y,dx:dx*sp,dy:dy*sp,col,pts:[],life:0,maxlife:14+Math.floor(Math.random()*12)});
   }
 
-  /* ── Draw animated Sun ── */
   function drawSun(cx, cy) {
     const t = Date.now() / 1000;
     const baseR = Math.min(W, H) * 0.10;
     const glow = 0.5 + 0.5 * Math.sin(pulse);
     const numRays = 16;
 
-    // Outer corona glow
     for (let i = 3; i > 0; i--) {
       const grad = ctx.createRadialGradient(cx, cy, baseR * 0.4, cx, cy, baseR * (1.5 + i * 0.6));
       grad.addColorStop(0, `rgba(255,184,0,${0.04 * i * glow})`);
@@ -984,7 +1176,6 @@ function showToast() {
       ctx.fillStyle = grad; ctx.fill();
     }
 
-    // Rays
     for (let i = 0; i < numRays; i++) {
       const angle = (i / numRays) * Math.PI * 2 + sunRot;
       const rayLen = baseR * (0.55 + 0.25 * Math.sin(t * 1.8 + i * 0.7));
@@ -1006,7 +1197,6 @@ function showToast() {
       ctx.fillStyle = grad; ctx.fill();
     }
 
-    // Secondary short rays
     for (let i = 0; i < numRays * 2; i++) {
       const angle = (i / (numRays * 2)) * Math.PI * 2 + sunRot * 1.3;
       const len = baseR * (0.2 + 0.1 * Math.sin(t * 2.4 + i));
@@ -1019,7 +1209,6 @@ function showToast() {
       ctx.lineWidth = 1.5; ctx.stroke();
     }
 
-    // Sun body gradient
     const bodyGrad = ctx.createRadialGradient(cx - baseR*0.22, cy - baseR*0.22, 0, cx, cy, baseR);
     bodyGrad.addColorStop(0, '#fff5cc');
     bodyGrad.addColorStop(0.35, '#ffcc00');
@@ -1028,12 +1217,10 @@ function showToast() {
     ctx.beginPath(); ctx.arc(cx, cy, baseR, 0, Math.PI * 2);
     ctx.fillStyle = bodyGrad; ctx.fill();
 
-    // Solar flare pulsing ring
     ctx.beginPath(); ctx.arc(cx, cy, baseR * (1.02 + 0.06 * glow), 0, Math.PI * 2);
     ctx.strokeStyle = `rgba(255,220,80,${0.5 * glow})`;
     ctx.lineWidth = 2 + glow * 3; ctx.stroke();
 
-    // Sunspot detail
     ctx.globalAlpha = 0.18;
     ctx.fillStyle = '#993300';
     ctx.beginPath(); ctx.ellipse(cx - baseR*0.28, cy + baseR*0.15, baseR*0.10, baseR*0.07, 0.4, 0, Math.PI*2);
@@ -1047,7 +1234,6 @@ function showToast() {
     tick++; sunRot += 0.0015; pulse += 0.018;
     ctx.fillStyle = '#04080f'; ctx.fillRect(0, 0, W, H);
 
-    // Stars
     for (const s of stars) {
       s.ph += s.sp;
       const a = 0.1 + 0.6 * (Math.sin(s.ph) + 1) / 2;
@@ -1055,11 +1241,9 @@ function showToast() {
       ctx.fillRect(s.x, s.y, s.s, s.s);
     }
 
-    // Sun (top-left area)
     const sx = W * 0.12, sy = H * 0.42;
     drawSun(sx, sy);
 
-    // Trails
     for (const t of trails) {
       t.pts.push([t.x, t.y]);
       if (t.pts.length > 22) t.pts.shift();
@@ -1087,7 +1271,6 @@ function showToast() {
       }
     }
 
-    // Edge trails
     spawnEdgeTrail();
     for (let i = etrails.length - 1; i >= 0; i--) {
       const et = etrails[i];
@@ -1105,7 +1288,6 @@ function showToast() {
       }
     }
 
-    // Neon edges
     const topG = ctx.createLinearGradient(0,0,W,0);
     topG.addColorStop(0,'rgba(255,184,0,0)'); topG.addColorStop(0.5,'rgba(255,184,0,1)'); topG.addColorStop(1,'rgba(255,184,0,0)');
     ctx.fillStyle = topG; ctx.fillRect(0,0,W,3);
